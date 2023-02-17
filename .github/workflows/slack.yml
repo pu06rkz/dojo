@@ -1,0 +1,22 @@
+name: Slack Message 
+
+env:
+  NODE_OPTIONS: --max-old-space-size=6144
+  SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+
+on:
+  workflow_dispatch:
+  push:
+  
+jobs:
+  slack-message:
+      runs-on: ubuntu-latest
+      strategy:
+        matrix:
+          node-version: [16.10.x]
+      steps:
+      - uses: slackapi/slack-github-action@v1.23.0
+        id: slack
+        with:
+          channel-id: 'C04JP326G1X'
+          slack-message: "Hello for the firts time"  
